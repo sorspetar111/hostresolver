@@ -36,12 +36,16 @@
             overflow-y: auto;
             line-height: 1.2em;
         }
+
+        input#urlInput {
+            min-width: 300px;
+        }
     </style>
     
 </head>
 <body>
     <label for="urlInput">Enter URL:</label>
-    <input type="text" id="urlInput">
+    <input type="text" id="urlInput" we>
     <button onclick="resolveAndDownload()">Resolve Hosts</button>
    
     <script src="resolveHosts.js"></script>
