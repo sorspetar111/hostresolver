@@ -95,7 +95,7 @@ function downloadNextChunk(ips) {
 
 /*
 
-const url = 'https://pzprovi.github.io/drop.txt';
+const url = 'https://*.github.io/drop.txt';
 resolveIPsFromURL(url)
     .then(ips => {        
         downloadNextChunk(ips);
