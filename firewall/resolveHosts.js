@@ -11,7 +11,7 @@ async function resolveIPsFromURL(url) {
         const response = await fetch(url);        
         const text = await response.text();    
         const lines = text.trim().split('\n');
-        const resolvedIPs = [];
+        let resolvedIPs = [];
         
         for (let i = 0; i < lines.length; i++) 
         {                                    
@@ -27,6 +27,7 @@ async function resolveIPsFromURL(url) {
                     {                                                            
                         numberIndex = 0;
                         downloadNextChunk(resolvedIPs);
+                        resolvedIPs = [];
                     }
                     
                     console.info(`${i} ${numberIndex++} ${ipAddress} ${hostname} / ${lines.length-1}`);
@@ -41,7 +42,12 @@ async function resolveIPsFromURL(url) {
                 console.error(`Error resolving ${hostname}:`, error);
             }
         }
-            
+
+        if (resolvedIPs != [])
+        {
+            numberIndex = 0;
+            downloadNextChunk(resolvedIPs);
+        }
         return resolvedIPs;
     } catch (error) {
         console.error('Error:', error);
