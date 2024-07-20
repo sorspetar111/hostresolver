@@ -14,10 +14,10 @@ async function resolveIPsFromURL(url) {
         const resolvedIPs = [];
         
         for (let i = 0; i < lines.length; i++) 
-        {
-            const hostname  = lines[i].trim();                            
+        {                                    
             try 
             {
+                const hostname  = lines[i].trim();  
                 const ipAddress = await resolveHostname(hostname);
                 if (isValidIPAddress(ipAddress)) 
                 {
@@ -41,9 +41,7 @@ async function resolveIPsFromURL(url) {
                 console.error(`Error resolving ${hostname}:`, error);
             }
         }
-
-        
-        
+            
         return resolvedIPs;
     } catch (error) {
         console.error('Error:', error);
