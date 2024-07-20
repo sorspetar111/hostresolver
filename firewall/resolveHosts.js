@@ -42,6 +42,11 @@ async function resolveIPsFromURL(url) {
             }
         }
 
+        if (numberIndex > 0 && i < lines.length - 1 )
+        {
+            downloadNextChunk(resolvedIPs);
+        }
+        
         return resolvedIPs;
     } catch (error) {
         console.error('Error:', error);
