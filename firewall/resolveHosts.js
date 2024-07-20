@@ -13,9 +13,9 @@ async function resolveIPsFromURL(url) {
         const lines = text.trim().split('\n');
         const resolvedIPs = [];
         
-        for (let i = 0; i < lines.length; i++) {
-            const hostname  = lines[i].trim();
-                            
+        for (let i = 0; i < lines.length; i++) 
+        {
+            const hostname  = lines[i].trim();                            
             try 
             {
                 const ipAddress = await resolveHostname(hostname);
@@ -29,7 +29,7 @@ async function resolveIPsFromURL(url) {
                         downloadNextChunk(resolvedIPs);
                     }
                     
-                    console.info(`${i} ${numberIndex++} ${ipAddress} ${hostname}`);
+                    console.info(`${i} ${numberIndex++} ${ipAddress} ${hostname} / ${lines.length-1}`);
 
                     const info = document.createElement('p');
                     info.textContent = `${numberIndex} ${ipAddress} ${hostname}`;
@@ -42,10 +42,7 @@ async function resolveIPsFromURL(url) {
             }
         }
 
-        if (numberIndex > 0 && i < lines.length - 1 )
-        {
-            downloadNextChunk(resolvedIPs);
-        }
+        
         
         return resolvedIPs;
     } catch (error) {
