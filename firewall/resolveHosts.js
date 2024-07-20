@@ -16,26 +16,29 @@ async function resolveIPsFromURL(url) {
         for (let i = 0; i < lines.length; i++) {
             const hostname  = lines[i].trim();
                             
-            try {
+            try 
+            {
                 const ipAddress = await resolveHostname(hostname);
-                if (isValidIPAddress(ipAddress)) {
+                if (isValidIPAddress(ipAddress)) 
+                {
                     resolvedIPs.push(ipAddress);
                 
-                    if (numberIndex === chunkSize || i === lines.length - 1) {                                                            
+                    if (numberIndex === chunkSize || i === lines.length - 1) 
+                    {                                                            
                         numberIndex = 0;
                         downloadNextChunk(resolvedIPs);
                     }
                     
-                    console.info(`${numberIndex++} ${ipAddress} ${hostname}`);
+                    console.info(`${i} ${numberIndex++} ${ipAddress} ${hostname}`);
 
                     const info = document.createElement('p');
                     info.textContent = `${numberIndex} ${ipAddress} ${hostname}`;
-                    infoContainer.appendChild(info);
-
-                
+                    infoContainer.appendChild(info);            
                 }
-            } catch (error) {
-                // console.error(`Error resolving ${hostname}:`, error);
+            } 
+            catch (error) 
+            {
+                console.error(`Error resolving ${hostname}:`, error);
             }
         }
 
