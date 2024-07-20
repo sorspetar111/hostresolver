@@ -27,7 +27,7 @@ async function resolveIPsFromURL(url) {
                     {                                                            
                         numberIndex = 0;
                         downloadNextChunk(resolvedIPs);
-                        resolvedIPs = [];
+                        // resolvedIPs = [];
                     }
                     
                     console.info(`${i} ${numberIndex++} ${ipAddress} ${hostname} / ${lines.length-1}`);
@@ -43,11 +43,12 @@ async function resolveIPsFromURL(url) {
             }
         }
 
-        if (resolvedIPs != [])
+        if (resolvedIPs.length > 0 &&  numberIndex > 0)
         {
             numberIndex = 0;
             downloadNextChunk(resolvedIPs);
         }
+        
         return resolvedIPs;
     } catch (error) {
         console.error('Error:', error);
